@@ -34,9 +34,9 @@ def create_application(student_id):
         if key not in {'resume', 'cover_letter', 'transcript'}:
             continue
 
-        temp_file.save(f'server/tmp/{temp_file.filename}')
+        temp_file.save(f'tmp/{temp_file.filename}')
         temp_file.close()
-        with open(f'server/tmp/{temp_file.filename}', 'rb') as f:
+        with open(f'tmp/{temp_file.filename}', 'rb') as f:
             files = {
                 'document': f
             }
@@ -47,7 +47,7 @@ def create_application(student_id):
                     'TRANSCRIPT'
             }
             status_code, resp = backend_api.create_student_document(student_id, payload, files)
-        os.remove(f'server/tmp/{temp_file.filename}')
+        os.remove(f'tmp/{temp_file.filename}')
 
         if status_code != 200:
             return jsonify(resp), status_code

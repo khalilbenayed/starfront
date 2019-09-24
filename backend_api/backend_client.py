@@ -5,7 +5,7 @@ import os
 
 class AMSClient:
     def __init__(self):
-        with open('server/config.yaml') as cfg_file:
+        with open('config.yaml') as cfg_file:
             cfg = yaml.load(cfg_file, Loader=yaml.Loader).get(os.environ['ENV'])
             self.ams_service = cfg.get('ams-service')
             self.ams_key = cfg.get('ams-key')

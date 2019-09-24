@@ -1,4 +1,4 @@
-"""server/app.py - main api app declaration"""
+"""app.py - main api app declaration"""
 from flask import Flask, send_from_directory
 from flask_cors import CORS
 from flask_bcrypt import Bcrypt
@@ -16,7 +16,7 @@ from routes import (
 from flask_jwt_extended import JWTManager
 
 
-with open('server/config.yaml') as cfg_file:
+with open('config.yaml') as cfg_file:
     cfg = yaml.load(cfg_file, Loader=yaml.Loader).get(os.environ['ENV'])
     secret_key = cfg.get('secret-key')
     mail_sender = cfg.get('mail-sender')
