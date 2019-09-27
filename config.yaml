@@ -4,7 +4,7 @@ local:
   mail-sender: 7abouba.benayed@gmail.com
   ams-service: http://localhost:5000/
 
-dev:
+prod:
   ams-key: gXXR5ag6tDhrKgf1AnegQFbbWys/hfxqiop7ySyzNpkvtiGItYiutjleCZe84pjejrlFAqaaLCkll3pD1AfZVw==
   secret-key: 4aaf70226a6ff65a2b6d63c535ec889088dd1b9157b48181
   mail-sender: 7abouba.benayed@gmail.com
