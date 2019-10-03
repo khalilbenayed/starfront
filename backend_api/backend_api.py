@@ -117,3 +117,7 @@ def get_company_job_applications(company_id, job_id,
 
 def get_company_job_application_by_id(company_id, job_id, application_id):
     return ams_client.get(f'api/companies/{company_id}/jobs/{job_id}/applications/{application_id}')
+
+
+def update_student_document(student_id, document_id, data):
+    return ams_client.patch(f'api/students/{student_id}/student_documents/{document_id}', data)

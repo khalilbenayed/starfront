@@ -24,6 +24,7 @@ from .backend_api import (
     update_student_application,
     get_company_job_applications,
     get_company_job_application_by_id,
+    update_student_document,
 )
 
 __all__ = [
@@ -52,4 +53,5 @@ __all__ = [
     'update_student_application',
     'get_company_job_applications',
     'get_company_job_application_by_id',
+    'update_student_document',
 ]

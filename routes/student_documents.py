@@ -1,4 +1,5 @@
 import os
+import json
 import shutil
 from flask import (
     request,
@@ -62,4 +63,30 @@ def create_student_document(student_id):
         }
         status_code, data = backend_api.create_student_document(student_id, request.form, files)
     os.remove(f'tmp/{temp_file.filename}')
+    return jsonify(data), status_code
+
+
+@student_documents_api.route('/api/student/<int:student_id>/student_documents/<int:document_id>', methods=['PATCH'])
+@jwt_required
+def update_student_document(student_id, document_id):
+    current_user = get_jwt_identity()
+    if current_user.get('id') != student_id:
+        return jsonify({'message': 'Not authorized'}), 403
+
+    payload = json.loads(request.data)
+    status_code, data = backend_api.update_student_document(student_id, document_id, payload)
+    return jsonify(data), status_code
+
+
+@student_documents_api.route('/api/student/<int:student_id>/student_documents/<int:document_id>', methods=['DELETE'])
+@jwt_required
+def delete_student_document(student_id, document_id):
+    current_user = get_jwt_identity()
+    if current_user.get('id') != student_id:
+        return jsonify({'message': 'Not authorized'}), 403
+
+    payload = {
+        'state': 'DELETED'
+    }
+    status_code, data = backend_api.update_student_document(student_id, document_id, payload)
     return jsonify(data), status_code
