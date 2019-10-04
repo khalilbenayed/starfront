@@ -1,4 +1,5 @@
 import json
+import os
 from flask import (
     request,
     Blueprint,
@@ -70,11 +71,13 @@ def company_signup():
         response_data["access_token"] = access_token
         response_data["refresh_token"] = refresh_token
 
-        token = generate_confirmation_token(payload['email'])
-        verification_url = url_for('company_login_api.confirm_email', token=token, _external=True)
-        html = render_template('verification_email.html', verification_url=verification_url)
-        subject = "Please confirm your email"
-        send_email(data.get('email'), subject, html)
+        # skip email confirmation for test environment
+        if os.environ.get('TEST') is None:
+            token = generate_confirmation_token(payload['email'])
+            verification_url = url_for('company_login_api.confirm_email', token=token, _external=True)
+            html = render_template('verification_email.html', verification_url=verification_url)
+            subject = "Please confirm your email"
+            send_email(data.get('email'), subject, html)
     return jsonify(response_data), status_code
 
 
