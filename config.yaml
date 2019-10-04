@@ -1,11 +1,15 @@
 local:
   ams-key: gXXR5ag6tDhrKgf1AnegQFbbWys/hfxqiop7ySyzNpkvtiGItYiutjleCZe84pjejrlFAqaaLCkll3pD1AfZVw==
-  secret-key: 4aaf70226a6ff65a2b6d63c535ec889088dd1b9157b48181
+  jwt-secret-key: 4aaf70226a6ff65a2b6d63c535ec889088dd1b9157b48181
+  secret-key: oznOdxdhPcWwZHp0YuS966QQadYH4sm3jzrxBZaiufc=
+  security-password-salt: LAc0PFKqQszLJEjWe+0Z3K/ldGxfE2wf2rgX2/LbcNE=
   mail-sender: 7abouba.benayed@gmail.com
   ams-service: http://localhost:5000/
 
 prod:
   ams-key: gXXR5ag6tDhrKgf1AnegQFbbWys/hfxqiop7ySyzNpkvtiGItYiutjleCZe84pjejrlFAqaaLCkll3pD1AfZVw==
-  secret-key: 4aaf70226a6ff65a2b6d63c535ec889088dd1b9157b48181
+  jwt-secret-key: 4aaf70226a6ff65a2b6d63c535ec889088dd1b9157b48181
+  secret-key: oznOdxdhPcWwZHp0YuS966QQadYH4sm3jzrxBZaiufc=
+  security-password-salt: LAc0PFKqQszLJEjWe+0Z3K/ldGxfE2wf2rgX2/LbcNE=
   mail-sender: 7abouba.benayed@gmail.com
   ams-service: https://startconnect-ams.herokuapp.com/

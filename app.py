@@ -15,11 +15,12 @@ from routes import (
 )
 from flask_jwt_extended import JWTManager
 
-
 with open('config.yaml') as cfg_file:
     cfg = yaml.load(cfg_file, Loader=yaml.Loader).get(os.environ['ENV'])
     secret_key = cfg.get('secret-key')
+    jwt_secret_key = cfg.get('jwt-secret-key')
     mail_sender = cfg.get('mail-sender')
+    security_password_salt = cfg.get('security-password-salt')
 
 """Main wrapper for app creation"""
 app = Flask(__name__, static_folder='../build')
@@ -32,11 +33,13 @@ app.config.update(dict(
     MAIL_USE_SSL=True,
     MAIL_USERNAME=os.environ.get('MAIL_USERNAME'),
     MAIL_PASSWORD=os.environ.get('MAIL_PASSWORD'),
-    MAIL_SENDER=mail_sender
+    MAIL_SENDER=mail_sender,
+    JWT_SECRET_KEY=jwt_secret_key,
+    JWT_ACCESS_TOKEN_EXPIRES=False,
+    SECURITY_PASSWORD_SALT=security_password_salt,
+    SECRET_KEY=secret_key,
 ))
 
-app.config['JWT_SECRET_KEY'] = secret_key
-app.config['JWT_ACCESS_TOKEN_EXPIRES'] = False
 jwt = JWTManager(app)
 
 bcrypt = Bcrypt(app)
